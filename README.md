@@ -26,5 +26,13 @@
 - [x] 完成 PersonSystem.java 選項3 ~ 7資料分析與處理
 
   程式碼: [PersonSystem](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_2/PersonSystem.java)
+
+  ### 2022/01/09 - Coursework 3
+
+ - [x] 將每次調用 查詢 queryAll() 方法的調用時間 Log 紀錄下來(透過切面導向程式設計 AOP)
+
+ 程式碼: [TemplateTest](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/test/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/template/TemplateTest.java)
+        [JdbcLoggerAspect](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/jdbc/logger/JdbcLoggerAspect.java)
+ Log檔: [log.json](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/jdbc/logger/log.json)
   
 
