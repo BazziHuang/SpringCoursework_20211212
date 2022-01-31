@@ -6,6 +6,8 @@
 
 - [**2021/12/19 - Coursework 1**](#20211219---coursework-1)
 - [**2021/12/26 - Coursework 2**](#20211226---coursework-2)
+- [**2022/01/09 - Coursework 3**](#20220109---coursework-3)
+
 
 ---
 
@@ -31,8 +33,8 @@
 
  - [x] 將每次調用 查詢 queryAll() 方法的調用時間 Log 紀錄下來(透過切面導向程式設計 AOP)
 
- 程式碼: [TemplateTest](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/test/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/template/TemplateTest.java)
-        [JdbcLoggerAspect](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/jdbc/logger/JdbcLoggerAspect.java)
- Log檔: [log.json](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/jdbc/logger/log.json)
+  程式碼: [TemplateTest](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/test/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/template/TemplateTest.java)
+        [JdbcLoggerAspect](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/jdbc/logger/JdbcLoggerAspect.java)  
+  Log檔: [log.json](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_3/jdbc/logger/log.json)
   
 

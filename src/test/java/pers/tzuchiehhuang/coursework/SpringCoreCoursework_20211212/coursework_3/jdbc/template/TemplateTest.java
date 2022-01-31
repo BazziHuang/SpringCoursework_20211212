@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_3.template;
+package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_3.jdbc.template;
 
 import java.io.IOException;
 
