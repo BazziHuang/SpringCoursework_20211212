@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="java" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Clazz" 
+		p:id="101" p:name="Java" p:credit="3" />
+	<bean id="html" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Clazz"
+		p:id="102" p:name="HTML" p:credit="2" />
+	<bean id="php" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Clazz"
+		p:id="103" p:name="PHP" p:credit="2" />
+	<bean id="sql" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Clazz"
+		p:id="103" p:name="SQL" p:credit="3" />
+	<bean id="general" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Clazz"
+		p:id="105" p:name="General class" p:credit="1" />
+
+	<bean id="s1" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Student"
+		p:id="201" p:name="Jack">
+		<property name="clazzs">
+			<set>
+				<ref bean="java" />
+				<ref bean="html" />
+				<ref bean="general" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="s2" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Student"
+		p:id="202" p:name="Mary">
+		<property name="clazzs">
+			<set>
+				<ref bean="html" />
+				<ref bean="general" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="t1" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Teacher"
+		p:id="301" p:name="Teacher1">
+		<property name="clazzs">
+			<set>
+				<ref bean="java" />
+				<ref bean="sql" />
+				<ref bean="general" />
+			</set>
+		</property>
+
+		<property name="experties">
+			<list>
+				<value>Program</value>
+				<value>Database</value>
+				<value>Art</value>
+				<value>Math</value>
+			</list>
+		</property>
+
+		<property name="salary">
+			<map>
+				<entry key="base">
+					<value>50000</value>
+				</entry>
+				<entry key="addition">
+					<value>20000</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="t2" class="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_1.Teacher"
+		p:id="302" p:name="Teacher2">
+		<property name="clazzs">
+			<set>
+				<ref bean="html" />
+			</set>
+		</property>
+		<property name="experties">
+			<list>
+				<value>Web</value>
+				<value>Art</value>
+			</list>
+		</property>
+		
+		<property name="salary">
+			<map>
+				<entry key="base">
+					<value>30000</value>
+				</entry>
+				<entry key="addition">
+					<value>10000</value>
+				</entry>
+			</map>
+		</property>
+
+	</bean>
+</beans>
