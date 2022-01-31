@@ -62,7 +62,7 @@ public class JsonDB {
 	public boolean add(Person person) throws Exception {
 		List<Person> people = queryAll();
 	
-		//********************  Homework 1  **********************
+		//****************************  Homework 1  *********************************
 		/*
 		 * The method isSamePerson(Person p1, Person p2) will check if p1 and p2 have same name
 		 * and same birthday (ignore time detail).
@@ -77,6 +77,22 @@ public class JsonDB {
 		}
 		people.add(person);
 		writeJson(people);
+		return true;
+	}
+	
+	/**
+	 * ******************************  Homework 1  **********************************
+	 * Check two Person whether have same name and same birthday (ignore time detail).
+	 * 
+	 * @param Person p1
+	 * @param Person p2
+	 * @return true if p1 and p2 have same name and same birth.
+	 */
+	private boolean isSamePerson(Person p1, Person p2) {
+		if (!p1.getName().equalsIgnoreCase(p2.getName()))
+			return false;
+		if (!getBirthLocalDate(p1.getBirth()).equals(getBirthLocalDate(p2.getBirth())))
+			return false;
 		return true;
 	}
 
@@ -122,22 +138,6 @@ public class JsonDB {
 		person.setBirth(date);
 		people.add(person);
 		writeJson(people);
-		return true;
-	}
-
-	/**
-	 * ********************  Homework 1  **********************
-	 * Check two Person whether have same name and same birthday (ignore time detail).
-	 * 
-	 * @param Person p1
-	 * @param Person p2
-	 * @return true if p1 and p2 have same name and same birth.
-	 */
-	private boolean isSamePerson(Person p1, Person p2) {
-		if (!p1.getName().equalsIgnoreCase(p2.getName()))
-			return false;
-		if (!getBirthLocalDate(p1.getBirth()).equals(getBirthLocalDate(p2.getBirth())))
-			return false;
 		return true;
 	}
 

@@ -1,9 +1,9 @@
 drop table if exists order_log;
 create table if not exists order_log(
 	lid integer not null auto_increment,
-	wid integer not null,
+	wid integer not null, --foreign key
 	wname varchar(20) not null,
-	bid integer not null,
+	bid integer not null, --foreign key
 	bname varchar(20) not null,
 	quantity integer not null,
 	total integer not null,

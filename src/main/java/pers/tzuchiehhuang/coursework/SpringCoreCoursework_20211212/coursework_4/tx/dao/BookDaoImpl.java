@@ -66,6 +66,7 @@ public class BookDaoImpl implements BookDao{
 		return jdbcTemplate.update(sql, money, wid);
 	}
 
+	//-----------------------------------Logger------------------------------------------------
 	@Override
 	public Integer orderLogger(Integer wid, Integer bid, Integer quantity, Boolean success) {
 		String sql= "Insert into order_log(wid, wname, bid, bname, quantity, total, success) values(?, ?, ?, ?, ?, ?, ?)";
