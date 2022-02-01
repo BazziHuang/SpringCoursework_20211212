@@ -1,8 +1,8 @@
 package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.Exception;
 
-public class PersonFormatException extends PersonException{
+public class PersonException extends Exception{
 	
-	public PersonFormatException(String message) {
+	public PersonException(String message) {
 		super(message);
 	}
 	

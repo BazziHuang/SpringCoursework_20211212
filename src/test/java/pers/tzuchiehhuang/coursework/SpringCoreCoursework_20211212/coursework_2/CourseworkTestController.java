@@ -7,10 +7,13 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.Exception.PersonException;
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.Exception.PersonFormatException;
+
 
 public class CourseworkTestController {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws PersonException {
 
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext2.xml");
 		PersonController controller = ctx.getBean("personController", PersonController.class);

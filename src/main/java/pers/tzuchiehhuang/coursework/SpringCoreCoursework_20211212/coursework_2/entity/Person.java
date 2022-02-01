@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2;
+package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.entity;
 
 import java.util.Date;
 import java.util.Objects;
@@ -54,6 +54,7 @@ public class Person {
 		return Objects.hash(age, birth, name);
 	}
 
+	/*
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,6 +66,7 @@ public class Person {
 		Person other = (Person) obj;
 		return Objects.equals(age, other.age) && Objects.equals(birth, other.birth) && Objects.equals(name, other.name);
 	}
+	*/
 
 	@Override
 	public String toString() {

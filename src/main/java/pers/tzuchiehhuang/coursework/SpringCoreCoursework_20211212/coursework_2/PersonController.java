@@ -1,8 +1,6 @@
 package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Year;
 import java.time.ZoneId;
 import java.time.temporal.ChronoField;
 import java.util.Calendar;
@@ -16,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.Exception.MutiplePersonsException;
 import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.Exception.PersonFormatException;
 import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.Exception.PersonNotFoundException;
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.entity.Person;
 
 @Controller
 public class PersonController {
@@ -24,15 +23,18 @@ public class PersonController {
 	private PersonService personService;
 
 	// 1-1
-	public boolean addPerson(String name, int year, int month, int day) throws InputMismatchException{
+	public boolean addPerson(String name, Integer year, Integer month, Integer day) throws PersonFormatException {
 		Date birth = getBirthDate(year, month, day);
 		return addPerson(name, birth);
 	}
 
 	// 1-2
-	public boolean addPerson(String name, Date birth) throws InputMismatchException{
+	public boolean addPerson(String name, Date birth) throws PersonFormatException {
+		if (name == null || name.trim().length() == 0) {
+			throw new PersonFormatException("Name can not be null, failing to create person data! Please check.");
+		}
 		Person person = new Person();
-		String newName= nameFormatter(name);
+		String newName = nameFormatter(name);
 		birthFomatCheck(birth);
 		person.setName(newName);
 		person.setBirth(birth);
@@ -40,7 +42,7 @@ public class PersonController {
 	}
 
 	// 1-3
-	public boolean addPerson(Person person) throws InputMismatchException{
+	public boolean addPerson(Person person) throws InputMismatchException {
 		return personService.append(person);
 	}
 
@@ -59,56 +61,78 @@ public class PersonController {
 	}
 
 	// 3
-	public List<Person> getPersonsByName(String name) {
-		return personService.getPerson(name);
-		// printInfo(people, name + " is not exists!");
+	public List<Person> getPersonsByName(String name) throws PersonFormatException, PersonNotFoundException {
+		if (name == null || name.trim().length() == 0) {
+			throw new PersonFormatException("Input person name can not be null, please try again.");
+		}
+		List<Person> persons = personService.getPerson(name);
+		if (persons.isEmpty()) {
+			throw new PersonNotFoundException(name + " is not exists!");
+		}
+		return persons;
 	}
 
-	// 4-1
-	public List<Person> getPersonsByBirth(int month, int day) {
+	// 4
+	public List<Person> getPersonsByBirth(Integer month, Integer day) throws PersonNotFoundException {
 		Date birth = getBirthDate(2000, month, day);
-		return getPersonsByBirth(birth);
-	}
-
-	// 4-2
-	public List<Person> getPersonsByBirth(Date birth) {
-		return personService.getPerson(birth);
-		// printInfo(people, "No one birth at this day!");
+		List<Person> persons = personService.getPerson(birth);
+		if (persons.isEmpty()) {
+			throw new PersonNotFoundException("No one birth on " + month + "/" + day + ".");
+		}
+		return persons;
 	}
 
 	// 5
 	/**
 	 * This method will find person whose age older or younger than entering age.
-	 * option greater than zero means find older, on the other hand find younger.
-	 * If no entering option or entering zero will find equal-age.
+	 * option greater than zero means find older, on the other hand find younger. If
+	 * no entering option or entering zero will find equal-age.
+	 * 
 	 * @param age
 	 * @param options
 	 * @return
+	 * @throws PersonFormatException
+	 * @throws PersonNotFoundException
 	 */
-	public List<Person> getPersonsByAge(int age, int options) {
-		return personService.getPerson(age, options);
+	public List<Person> getPersonsByAge(Integer age, AgeOptions options)
+			throws PersonFormatException, PersonNotFoundException {
+		if (age == null || age < 0) {
+			throw new PersonFormatException("Input age can not be null or be negative, please try again.");
+		}
+		List<Person> persons = personService.getPerson(age, options);
+		if (persons.isEmpty()) {
+			throw new PersonNotFoundException("Person not found!");
+		}
+		return persons;
 	}
 
-	public List<Person> getPersonsByAge(int age) {
-		return personService.getPerson(age, 0);
+	public List<Person> getPersonsByAge(Integer age) throws PersonNotFoundException {
+		List<Person> persons = personService.getPerson(age, AgeOptions.SAMEAGE);
+		if (persons.isEmpty()) {
+			throw new PersonNotFoundException("Person not found!");
+		}
+		return persons;
 	}
 
 	// 6-1
 	/**
 	 * If there are more than one person with this name, this method will do
 	 * nothing.
+	 * 
 	 * @param name
 	 * @param year
 	 * @param month
 	 * @param day
+	 * @throws PersonFormatException
 	 */
-	public boolean updatePersonBirthday(String name, int year, int month, int day) throws PersonNotFoundException, MutiplePersonsException{
-		List<Person> persons = personService.getPerson(name);
+	public boolean updatePersonBirthday(String name, Integer year, Integer month, Integer day)
+			throws PersonNotFoundException, MutiplePersonsException, PersonFormatException {
+		List<Person> persons = getPersonsByName(name);
 		if (persons.size() > 1) {
-			throw new MutiplePersonsException("More then one persons named "+ name);
+			throw new MutiplePersonsException("More then one persons named " + name);
 		}
 		if (persons.isEmpty()) {
-			throw new PersonNotFoundException(name+" not exists!");
+			throw new PersonNotFoundException(name + " not exists!");
 		}
 		Person person = persons.get(0);
 		Date newBirth = getBirthDate(year, month, day);
@@ -118,17 +142,22 @@ public class PersonController {
 	}
 
 	// 6-2
-	public boolean updatePersonBirthday(String name, int oldYear, int oldMonth, int oldDay, int newYear, int newMonth,
-			int newDay) {
+	public boolean updatePersonBirthday(String name, Integer oldYear, Integer oldMonth, Integer oldDay, Integer newYear,
+			Integer newMonth, Integer newDay) throws PersonNotFoundException, PersonFormatException {
 		Person person = new Person();
 		Date oldBirth = getBirthDate(oldYear, oldMonth, oldDay);
-		person.setName(name);
+		person.setName(name.trim());
 		person.setBirth(oldBirth);
+		if (!personService.havePerson(person)) {
+			throw new PersonNotFoundException(
+					name + " birthday: " + oldYear + "/" + oldMonth + "/" + oldDay + " not exists!");
+		}
 		return updatePersonBirthday(person, newYear, newMonth, newDay);
 	}
 
 	// 6-3
-	public boolean updatePersonBirthday(Person person, int year, int month, int day) throws InputMismatchException{
+	public boolean updatePersonBirthday(Person person, Integer year, Integer month, Integer day)
+			throws PersonFormatException {
 		Date newBirth = getBirthDate(year, month, day);
 		birthFomatCheck(newBirth);
 		return personService.updateBirthDay(person, newBirth);
@@ -139,103 +168,112 @@ public class PersonController {
 	 * This method will delete all person who with this name.
 	 * 
 	 * @param name
+	 * @throws PersonFormatException
 	 */
-	public boolean deleteAllPersonsByName(String name) throws PersonNotFoundException {
+	public boolean deleteAllPersonsByName(String name) throws PersonNotFoundException, PersonFormatException {
+		if (name == null || name.trim().length() == 0) {
+			throw new PersonFormatException("Input name can not be null!");
+		}
 		List<Person> people = personService.findAllPersons();
 		if (people.removeIf(p -> p.getName().equalsIgnoreCase(name))) {
 			return personService.writePersons(people);
 		}
-		throw new PersonNotFoundException(name +" not exists!");
+		throw new PersonNotFoundException(name + " not exists!");
 	}
-	
-	//7-2
-	public boolean deletePerson(String name) throws MutiplePersonsException, PersonNotFoundException{
+
+	// 7-2
+	public boolean deletePerson(String name)
+			throws MutiplePersonsException, PersonNotFoundException, PersonFormatException {
 		List<Person> persons = personService.getPerson(name);
 		if (persons.size() > 1) {
-			throw new MutiplePersonsException("More then one persons named "+ name);
+			throw new MutiplePersonsException("More then one persons named " + name);
 		}
 		if (persons.isEmpty()) {
-			throw new PersonNotFoundException(name+" not exists!");
+			throw new PersonNotFoundException(name + " not exists!");
 		}
-		List<Person> people= personService.findAllPersons();
+		List<Person> people = personService.findAllPersons();
 		people.removeIf(p -> p.getName().equalsIgnoreCase(name));
 		return personService.writePersons(people);
 	}
 
 	// 7-3
-	public boolean deletePerson(String name, int year, int month, int day) {
+	public boolean deletePerson(String name, Integer year, Integer month, Integer day) throws PersonNotFoundException {
 		Date birth = getBirthDate(year, month, day);
-		return deletePerson(name, birth);
-	}
-
-	// 7-4
-	public boolean deletePerson(String name, Date birth) {
 		Person person = new Person();
-		person.setName(name);
+		person.setName(name.trim());
 		person.setBirth(birth);
+		if (!personService.havePerson(person)) {
+			throw new PersonNotFoundException(name + " birthday: " + year + "/" + month + "/" + day + " not exists!");
+		}
 		return deletePerson(person);
 	}
 
-	// 7-5
+	// 7-4
 	public boolean deletePerson(Person person) {
 		return personService.deletePerson(person);
 	}
-	
+
 	/**
 	 * Convert the entering data to Date type.
+	 * 
 	 * @param year
 	 * @param month
 	 * @param day
 	 * @return
 	 */
-	private Date getBirthDate(int year, int month, int day) {
+	private Date getBirthDate(Integer year, Integer month, Integer day) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month - 1, day);
 		return calendar.getTime();
 	}
-	
+
 	/**
 	 * Check the entering birth date is valid.
+	 * 
 	 * @param birth
 	 * @throws PersonFormatException if the date after now-time, or before 1900.
 	 */
-	private void birthFomatCheck(Date birth) throws PersonFormatException{
-		Date now= new Date();
-		if(birth.after(now)) {
+	private void birthFomatCheck(Date birth) throws PersonFormatException {
+		Date now = new Date();
+		if (birth.after(now)) {
 			throw new PersonFormatException("Entering birthday is after now time, please check!");
 		}
 		LocalDate localDate = birth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		int year= localDate.get(ChronoField.YEAR);
-		int month= localDate.get(ChronoField.MONTH_OF_YEAR);
-		int day= localDate.get(ChronoField.DAY_OF_MONTH);
-		if(year<1900)
+		int year = localDate.get(ChronoField.YEAR);
+		int month = localDate.get(ChronoField.MONTH_OF_YEAR);
+		int day = localDate.get(ChronoField.DAY_OF_MONTH);
+		if (year < 1900)
 			throw new PersonFormatException("The person was born before 1900, please check!");
-		if(month<=0 || month>12 || day<=0 || day>31) {
+		if (month <= 0 || month > 12 || day <= 0 || day > 31) {
 			throw new PersonFormatException("Birthday format not correct, please check!");
 		}
-		
+
 	}
-	
+
 	/**
-	 * Check the entering person name whether contains special characters, and revise the name first letter to uppercase.
+	 * Check the entering person name whether contains special characters, and
+	 * revise the name first letter to uppercase.
+	 * 
 	 * @param name
-	 * @return The name witch fist-letter is uppercase. 
+	 * @return The name witch fist-letter is uppercase.
 	 * @throws PersonFormatException if contains special characters.
 	 */
-	private String nameFormatter(String name) throws PersonFormatException{
-		final String SPECIAL= "!\"#$%&'()*+,-./0123456789:;<=>?@[\\]^_`{|}~";
-		String newName= name.trim();
-		for(int i=0; i<SPECIAL.length(); i++) {
-			if(newName.contains(SPECIAL.substring(i,i+1))) {
-				throw new PersonFormatException("The person's name contains special characters, adding person fail! Please check!");
+	private String nameFormatter(String name) throws PersonFormatException {
+		final String SPECIAL = "!\"#$%&'()*+,-./0123456789:;<=>?@[\\]^_`{|}~";
+		String newName = name.trim();
+		for (int i = 0; i < SPECIAL.length(); i++) {
+			if (newName.contains(SPECIAL.substring(i, i + 1))) {
+				throw new PersonFormatException(
+						"The person's name contains special characters, failing to create person data! Please check!");
 			}
 		}
-		newName= newName.substring(0,1).toUpperCase()+newName.substring(1);
-		for(int i=0;;i++) {
-			i= newName.indexOf(" ", i);
-			if(i==-1)
+		newName = newName.substring(0, 1).toUpperCase() + newName.substring(1);
+		for (int i = 0;; i++) {
+			i = newName.indexOf(" ", i);
+			if (i == -1)
 				break;
-			newName= newName.substring(0,i+1)+newName.substring(i+1,i+2).toUpperCase()+newName.substring(i+2);
+			newName = newName.substring(0, i + 1) + newName.substring(i + 1, i + 2).toUpperCase()
+					+ newName.substring(i + 2);
 		}
 		return newName;
 	}

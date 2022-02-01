@@ -6,6 +6,10 @@ import java.util.Date;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.database.PersonDao;
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.database.PersonDaoImpl;
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.entity.Person;
+
 public class CourseworkTestPersonDao {
 	
 	public static void main(String arg[]) {

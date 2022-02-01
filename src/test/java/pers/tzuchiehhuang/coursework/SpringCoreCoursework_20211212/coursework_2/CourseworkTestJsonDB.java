@@ -6,6 +6,9 @@ import java.util.Date;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.database.JsonDB;
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.entity.Person;
+
 public class CourseworkTestJsonDB {
 	
 	public static void main(String[] args) throws Exception{

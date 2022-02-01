@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2;
+package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.database;
 
 import java.io.IOException;
 import java.util.Date;
@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.entity.Person;
 
 @Repository
 public class PersonDaoImpl implements PersonDao {
@@ -18,7 +20,7 @@ public class PersonDaoImpl implements PersonDao {
 		boolean check = false;
 		try {
 			check = jsonDB.add(person);
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			check = false;
 		}
@@ -30,7 +32,7 @@ public class PersonDaoImpl implements PersonDao {
 		List<Person> people = null;
 		try {
 			people = jsonDB.queryAll();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return people;
@@ -42,7 +44,7 @@ public class PersonDaoImpl implements PersonDao {
 		try {
 			jsonDB.writeJson(people);
 			check = true;
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			check = false;
 		}
@@ -51,22 +53,26 @@ public class PersonDaoImpl implements PersonDao {
 
 	@Override
 	public boolean remove(Person person) {
+		boolean check = false;
 		try {
-			return jsonDB.delete(person);
-		} catch (Exception e) {
+			check= jsonDB.delete(person);
+		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
+			check= false;
 		}
+		return check;
 	}
 
 	@Override
 	public boolean update(Person person, Date birth) {
+		boolean check = false;
 		try {
-			return jsonDB.updateBirth(person, birth);
-		} catch (Exception e) {
+			check= jsonDB.updateBirth(person, birth);
+		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
+			check= false;
 		}
+		return check;
 	}
 
 }

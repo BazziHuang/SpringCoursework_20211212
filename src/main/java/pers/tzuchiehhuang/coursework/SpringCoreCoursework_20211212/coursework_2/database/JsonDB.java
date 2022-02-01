@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2;
+package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.database;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -20,34 +20,35 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.Exception.PersonFormatException;
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.entity.Person;
 
 @Component
 public class JsonDB {
 
 	@Autowired
 	private Gson gson;
-	private static final Path PATH = Paths.get("src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_2/person.json");
+	private static final Path PATH = Paths.get("src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_2/database/person.json");
 
 	
 	/**
-	 * Get a list contain all person data from person.json
+	 * Get a list with all person data from person.json
 	 * @return List<Person>
-	 * @throws Exception
+	 * @throws IOException
 	 */
-	public List<Person> queryAll() throws Exception {
+	public List<Person> queryAll() throws IOException {
 
 		String jsonStr = Files.readAllLines(PATH).stream().collect(Collectors.joining());
 		Type type = new TypeToken<ArrayList<Person>>() {
 		}.getType();
 		List<Person> people = gson.fromJson(jsonStr, type);
 
-		// Calculate Person's age
+		// ----------------- Calculate Person's age -----------------
 		LocalDate today = LocalDate.now();
 		for (Person p : people) {
 			LocalDate bitrhday = getBirthLocalDate(p.getBirth());
 			p.setAge(Period.between(bitrhday, today).getYears());
 		}
-		// Calculate Person's age
+		// ----------------- Calculate Person's age -----------------
 		
 		return people;
 	}
@@ -57,9 +58,9 @@ public class JsonDB {
 	 * Add a new person data.
 	 * @param person
 	 * @return true if add success, otherwise return false.
-	 * @throws Exception
+	 * @throws IOException, PersonFormatException 
 	 */
-	public boolean add(Person person) throws Exception {
+	public boolean add(Person person) throws IOException{
 		List<Person> people = queryAll();
 	
 		//****************************  Homework 1  *********************************
@@ -68,12 +69,8 @@ public class JsonDB {
 		 * and same birthday (ignore time detail).
 		 */
 		boolean samePerson = people.stream().anyMatch(p -> isSamePerson(p, person));
-
 		if (samePerson) {
 			return false;
-		}
-		if(person.getName()==null || person.getBirth()==null) {
-			throw new NullPointerException();
 		}
 		people.add(person);
 		writeJson(people);
@@ -102,7 +99,7 @@ public class JsonDB {
 	 * @param List<Person> people
 	 * @throws IOException
 	 */
-	public void writeJson(List<Person> people) throws Exception {
+	public void writeJson(List<Person> people) throws IOException {
 		String newJsonStr = gson.toJson(people);
 		Files.write(PATH, newJsonStr.getBytes("UTF-8"));
 	}
@@ -113,7 +110,7 @@ public class JsonDB {
 	 * @return true if person exists and delete success, otherwise return false.
 	 * @throws Exception
 	 */
-	public boolean delete(Person person) throws Exception {
+	public boolean delete(Person person) throws IOException {
 		List<Person> people = queryAll();
 		boolean check = people.removeIf(p -> isSamePerson(p, person));
 		if (check)
@@ -126,14 +123,12 @@ public class JsonDB {
 	 * @param person
 	 * @param date
 	 * @return If person not exists will return false.
+	 * @throws PersonFormatException 
 	 * @throws Exception
 	 */
-	public boolean updateBirth(Person person, Date date) throws Exception {
+	public boolean updateBirth(Person person, Date date) throws IOException {
 		if(!delete(person))
 			return false;
-		if(date==null) {
-			throw new PersonFormatException("Birthdate can not be null!");
-		}
 		List<Person> people = queryAll();
 		person.setBirth(date);
 		people.add(person);

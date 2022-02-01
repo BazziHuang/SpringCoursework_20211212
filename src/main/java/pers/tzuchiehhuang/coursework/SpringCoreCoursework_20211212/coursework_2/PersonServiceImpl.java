@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.database.PersonDao;
+import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_2.entity.Person;
+
 @Service
 public class PersonServiceImpl implements PersonService {
 
@@ -26,6 +29,25 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
+	public boolean havePerson(Person person) {
+		String name= person.getName();
+		String birthday= getBirthday(person.getBirth());
+		List<Person> persons = getPerson(name);
+		if(persons.isEmpty()) {
+			return false;
+		}
+		persons= persons.stream().filter(p -> {
+			if (getBirthday(p.getBirth()).equals(birthday))
+				return true;
+			return false;
+		}).collect(Collectors.toList());
+		if (persons.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
 	public List<Person> getPerson(String name) {
 		return findAllPersons().stream().filter(p -> p.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
 	}
@@ -38,10 +60,10 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public List<Person> getPerson(int age, int options) {
-		if (options > 0)
+	public List<Person> getPerson(Integer age, AgeOptions options) {
+		if (options == AgeOptions.OLDERAGE)
 			return findAllPersons().stream().filter(p -> p.getAge() >= age).collect(Collectors.toList());
-		if (options < 0)
+		if (options == AgeOptions.YOUNGERAGE)
 			return findAllPersons().stream().filter(p -> p.getAge() <= age).collect(Collectors.toList());
 		return findAllPersons().stream().filter(p -> p.getAge() == age).collect(Collectors.toList());
 
@@ -67,6 +89,5 @@ public class PersonServiceImpl implements PersonService {
 		String birthday = birthDate.get(ChronoField.MONTH_OF_YEAR) + " " + birthDate.get(ChronoField.DAY_OF_MONTH);
 		return birthday;
 	}
-
 
 }
