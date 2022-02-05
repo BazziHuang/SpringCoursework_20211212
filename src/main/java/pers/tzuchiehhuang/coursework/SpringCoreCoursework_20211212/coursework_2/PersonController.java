@@ -22,7 +22,7 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
-	// 1-1
+	// 1-1 Create new person data.
 	public boolean addPerson(String name, Integer year, Integer month, Integer day) throws PersonFormatException {
 		Date birth = getBirthDate(year, month, day);
 		return addPerson(name, birth);
@@ -31,22 +31,17 @@ public class PersonController {
 	// 1-2
 	public boolean addPerson(String name, Date birth) throws PersonFormatException {
 		if (name == null || name.trim().length() == 0) {
-			throw new PersonFormatException("Name can not be null, failing to create person data! Please check.");
+			throw new PersonFormatException("Input name can not be null, failing to create person data! Please check.");
 		}
 		Person person = new Person();
 		String newName = nameFormatter(name);
 		birthFomatCheck(birth);
 		person.setName(newName);
 		person.setBirth(birth);
-		return addPerson(person);
-	}
-
-	// 1-3
-	public boolean addPerson(Person person) throws InputMismatchException {
 		return personService.append(person);
 	}
 
-	// 2
+	// 2 Print all persons.
 	public void printAllPersons() {
 		List<Person> people = personService.findAllPersons();
 		System.out.println("+-----------------------------------------------+");
@@ -60,7 +55,7 @@ public class PersonController {
 		}
 	}
 
-	// 3
+	// 3 Print person's detail by name.
 	public List<Person> getPersonsByName(String name) throws PersonFormatException, PersonNotFoundException {
 		if (name == null || name.trim().length() == 0) {
 			throw new PersonFormatException("Input person name can not be null, please try again.");
@@ -72,7 +67,7 @@ public class PersonController {
 		return persons;
 	}
 
-	// 4
+	// 4 Print person's detail by birthday.
 	public List<Person> getPersonsByBirth(Integer month, Integer day) throws PersonNotFoundException {
 		Date birth = getBirthDate(2000, month, day);
 		List<Person> persons = personService.getPerson(birth);
@@ -84,13 +79,12 @@ public class PersonController {
 
 	// 5
 	/**
+	 * Print person's detail by age.
 	 * This method will find person whose age older or younger than entering age.
-	 * option greater than zero means find older, on the other hand find younger. If
-	 * no entering option or entering zero will find equal-age.
 	 * 
 	 * @param age
-	 * @param options
-	 * @return
+	 * @param AgeOptions
+	 * @return List<Person>
 	 * @throws PersonFormatException
 	 * @throws PersonNotFoundException
 	 */
@@ -109,27 +103,29 @@ public class PersonController {
 	public List<Person> getPersonsByAge(Integer age) throws PersonNotFoundException {
 		List<Person> persons = personService.getPerson(age, AgeOptions.SAMEAGE);
 		if (persons.isEmpty()) {
-			throw new PersonNotFoundException("Person not found!");
+			throw new PersonNotFoundException("No matched person found!");
 		}
 		return persons;
 	}
 
 	// 6-1
 	/**
-	 * If there are more than one person with this name, this method will do
-	 * nothing.
+	 * Update person's birthday.
+	 * If there are more than one person with this name, this method will throw MutiplePersonsException.
 	 * 
 	 * @param name
 	 * @param year
 	 * @param month
 	 * @param day
+	 * @throws PersonNotFoundException
+	 * @throws MutiplePersonsException
 	 * @throws PersonFormatException
 	 */
 	public boolean updatePersonBirthday(String name, Integer year, Integer month, Integer day)
 			throws PersonNotFoundException, MutiplePersonsException, PersonFormatException {
 		List<Person> persons = getPersonsByName(name);
 		if (persons.size() > 1) {
-			throw new MutiplePersonsException("More then one persons named " + name);
+			throw new MutiplePersonsException("More then one persons named " + name + ".");
 		}
 		if (persons.isEmpty()) {
 			throw new PersonNotFoundException(name + " not exists!");
@@ -146,7 +142,8 @@ public class PersonController {
 			Integer newMonth, Integer newDay) throws PersonNotFoundException, PersonFormatException {
 		Person person = new Person();
 		Date oldBirth = getBirthDate(oldYear, oldMonth, oldDay);
-		person.setName(name.trim());
+		String newName= nameFormatter(name);
+		person.setName(newName);
 		person.setBirth(oldBirth);
 		if (!personService.havePerson(person)) {
 			throw new PersonNotFoundException(
@@ -165,6 +162,7 @@ public class PersonController {
 
 	// 7-1
 	/**
+	 * Delete person.
 	 * This method will delete all person who with this name.
 	 * 
 	 * @param name
@@ -205,11 +203,6 @@ public class PersonController {
 		if (!personService.havePerson(person)) {
 			throw new PersonNotFoundException(name + " birthday: " + year + "/" + month + "/" + day + " not exists!");
 		}
-		return deletePerson(person);
-	}
-
-	// 7-4
-	public boolean deletePerson(Person person) {
 		return personService.deletePerson(person);
 	}
 

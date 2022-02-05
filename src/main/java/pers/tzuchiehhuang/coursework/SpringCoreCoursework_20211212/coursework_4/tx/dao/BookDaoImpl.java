@@ -69,6 +69,9 @@ public class BookDaoImpl implements BookDao{
 	//-----------------------------------Logger------------------------------------------------
 	@Override
 	public Integer orderLogger(Integer wid, Integer bid, Integer quantity, Boolean success) {
+		/*
+		 * parameter "success", if purchase is completed, will give it true, otherwise false.
+		 */
 		String sql= "Insert into order_log(wid, wname, bid, bname, quantity, total, success) values(?, ?, ?, ?, ?, ?, ?)";
 		String wname= getWalletName(wid);
 		String bname= getBookName(bid);

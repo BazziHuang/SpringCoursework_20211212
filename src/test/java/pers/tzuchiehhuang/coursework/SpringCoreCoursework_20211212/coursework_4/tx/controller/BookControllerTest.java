@@ -11,8 +11,8 @@ public class BookControllerTest {
 	public static void main(String[] args) throws OrderException {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext4.xml");
 		BookController bookController= ctx.getBean("bookController", BookController.class);
-		bookController.buyBook(2, 1);
-		bookController.buyBooks(4, 2, 3, 3, 5);
+		//bookController.buyBook(2, 1);
+		bookController.buyBooks(2, 4, 5, 3, 6);
 	}
 
 }

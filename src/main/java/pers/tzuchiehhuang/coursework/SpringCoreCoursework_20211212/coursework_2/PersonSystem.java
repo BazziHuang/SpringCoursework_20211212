@@ -252,7 +252,7 @@ public class PersonSystem {
 			System.out.print("You want to delete all persons named " + name + "? (y/N)");
 			Scanner sc2 = new Scanner(System.in);
 			String option = sc2.next();
-			if (option.equals("y")) {
+			if (option.equalsIgnoreCase("y")) {
 				deleteAllPersonByName(name);
 			} else {
 				deletePersonByName(name);

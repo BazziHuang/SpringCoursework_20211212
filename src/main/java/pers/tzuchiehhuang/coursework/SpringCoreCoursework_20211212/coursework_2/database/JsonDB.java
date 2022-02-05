@@ -58,7 +58,7 @@ public class JsonDB {
 	 * Add a new person data.
 	 * @param person
 	 * @return true if add success, otherwise return false.
-	 * @throws IOException, PersonFormatException 
+	 * @throws IOException
 	 */
 	public boolean add(Person person) throws IOException{
 		List<Person> people = queryAll();
@@ -108,7 +108,7 @@ public class JsonDB {
 	 * Delete person from person.json
 	 * @param person
 	 * @return true if person exists and delete success, otherwise return false.
-	 * @throws Exception
+	 * @throws IOException
 	 */
 	public boolean delete(Person person) throws IOException {
 		List<Person> people = queryAll();
@@ -124,7 +124,7 @@ public class JsonDB {
 	 * @param date
 	 * @return If person not exists will return false.
 	 * @throws PersonFormatException 
-	 * @throws Exception
+	 * @throws IOException
 	 */
 	public boolean updateBirth(Person person, Date date) throws IOException {
 		if(!delete(person))
@@ -137,7 +137,7 @@ public class JsonDB {
 	}
 
 	/**
-	 * Convert getBith() data type from Date to LocalDate
+	 * Convert data type from Date to LocalDate
 	 * 
 	 * @param birth from Person.getBirth()
 	 * @return birth as LocalDate type

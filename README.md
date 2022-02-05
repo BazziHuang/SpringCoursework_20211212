@@ -43,8 +43,8 @@
 - [x] 建立交易紀錄 order_log 資料表，試問: 資料表應如何創建 (注意: 若 book 的 price 欄位有變動，order_log 則不影響)，請完成整段資料庫 log 寫入機制
 
   建立Log Table: [createLogTable.sql](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/sql/createLogTable.sql)  
-  DAO寫orderLogger()方法: [BookDaoImpl.java](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/dao/BookDaoImpl.java)  
-  Controller在finally區塊執行Logger: [BookController.java](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/controller/BookController.java)  
+  DAO建立orderLogger()方法: [BookDaoImpl.java](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/dao/BookDaoImpl.java)  
+  Controller在finally區塊執行Logger, 不管購買成功失敗都會被記錄: [BookController.java](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/controller/BookController.java)  
   測試檔: [BookControllerTest.java](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/test/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/controller/BookControllerTest.java)
 
   

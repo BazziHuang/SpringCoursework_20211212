@@ -1,6 +1,8 @@
-create database if not exists bookstore;
-use bookstore;
-create table if not exists book(
+--create database if not exists `bookstore`;
+--use `bookstore`;
+use `finweb`;
+drop table if exists `book`;
+create table if not exists `book`(
 	bid integer not null auto_increment,
 	bname varchar(20) not null,
 	price integer default 0,
@@ -8,15 +10,17 @@ create table if not exists book(
 	primary key (bid)
 );
 
-create table if not exists stock(
+drop table if exists `stock`;
+create table if not exists `stock`(
 	sid integer not null auto_increment,
 	bid integer not null,
 	amount integer default 0,
 	primary key (sid),
-	foreign key (bid) references book(bid)
+	foreign key (bid) references `book`(bid)
 );
 
-create table if not exists wallet(
+drop table if exists `wallet`;
+create table if not exists `wallet`(
 	wid integer not null auto_increment,
 	wname varchar(20) not null,
 	money integer default 0,

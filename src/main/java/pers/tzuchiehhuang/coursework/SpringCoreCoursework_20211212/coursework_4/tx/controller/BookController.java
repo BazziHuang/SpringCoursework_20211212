@@ -36,6 +36,11 @@ public class BookController {
 
 	public void buyBooks(Integer wid, Integer... bids) {
 		Boolean sucess= true;
+		/*
+		 * Here is used to count the quantity of the purchased of each books.
+		 * For example, input bids: 1, 1, 1, 2, 4
+		 * 				output (key: bid, value: quantity): (1, 3), (2, 1), (4, 1) 
+		 */
 		Map<Integer, Integer> buyingMap= Arrays.asList(bids).stream().collect(Collectors.toMap(
 				i->i,
 				i->1,

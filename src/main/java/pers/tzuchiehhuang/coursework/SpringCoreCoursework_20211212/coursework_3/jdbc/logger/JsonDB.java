@@ -43,7 +43,7 @@ public class JsonDB {
 		System.out.println("|  method_name  |              log_timestamp             |");
 		System.out.println("|---------------+----------------------------------------|");
 		for(MethodLog ml: log) {
-			System.out.printf("|   %-12s|   %14s   |\n", ml.getMethod(), ml.getTime().toString());
+			System.out.printf("|   %-12s|      %14s      |\n", ml.getMethod(), ml.getTime().toString());
 			System.out.println("+---------------+----------------------------------------+");
 		}
 		

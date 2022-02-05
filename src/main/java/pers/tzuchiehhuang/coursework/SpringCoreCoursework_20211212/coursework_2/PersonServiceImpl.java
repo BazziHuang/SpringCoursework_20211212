@@ -28,6 +28,10 @@ public class PersonServiceImpl implements PersonService {
 		return personDao.readAll();
 	}
 
+	/**
+	 * Check input person exists in person.json.
+	 * @param person 
+	 */
 	@Override
 	public boolean havePerson(Person person) {
 		String name= person.getName();

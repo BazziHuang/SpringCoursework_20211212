@@ -14,4 +14,3 @@ create table if not exists `order_log`(
 	foreign key (wid) references `wallet`(wid),
 	foreign key (bid) references `book`(bid)
 );
-	
