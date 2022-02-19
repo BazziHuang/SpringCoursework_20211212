@@ -50,10 +50,10 @@
 
   ### 2022/02/13 - Coursework 5
 
-  - [x] 統計lottos每一個號碼出現的次數
+- [x] 統計lottos每一個號碼出現的次數
 
-    Service建立getLottosData()方法: [LottoService.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_5/case02/service/LottoService.java)  
-    Controller調用getLottosData()方法: [LottoController.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_5/case02/controller/LottoController.java)  
-    網頁呈現: [show_lotto.jsp](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/webapp/WEB-INF/views/case02/show_lotto.jsp)  
+  Service建立getLottosData()方法: [LottoService.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_5/case02/service/LottoService.java)  
+  Controller調用getLottosData()方法: [LottoController.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_5/case02/controller/LottoController.java)  
+  網頁呈現: [show_lotto.jsp](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/webapp/WEB-INF/views/case02/show_lotto.jsp)  
 
 
