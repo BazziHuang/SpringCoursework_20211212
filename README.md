@@ -47,5 +47,8 @@
   Controller在finally區塊執行Logger, 不管購買成功失敗都會被記錄: [BookController.java](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/controller/BookController.java)  
   測試檔: [BookControllerTest.java](https://github.com/BazziHuang/SpringCoreCoursework_20211212/blob/main/src/test/java/pers/tzuchiehhuang/coursework/SpringCoreCoursework_20211212/coursework_4/tx/controller/BookControllerTest.java)
 
-  
+  ### 2022/01/23 - Coursework 4
+
+  - [x] 統計lottos每一個號碼出現的次數
+
 

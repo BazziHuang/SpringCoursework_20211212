@@ -12,7 +12,7 @@ public class BookControllerTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext4.xml");
 		BookController bookController= ctx.getBean("bookController", BookController.class);
 		//bookController.buyBook(2, 1);
-		bookController.buyBooks(2, 4, 5, 3, 6);
+		bookController.buyBooks(2, 1, 2, 5);
 	}
 
 }
