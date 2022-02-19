@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_5.case02.controller;
+package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case02.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_5.case02.service.LottoService;
+import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case02.service.*;
 
 
 @Controller

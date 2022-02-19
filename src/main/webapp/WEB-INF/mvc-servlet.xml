@@ -17,7 +17,7 @@
 	<mvc:default-servlet-handler />
 
 	<context:component-scan
-		base-package="pers.tzuchiehhuang.coursework.SpringCoreCoursework_20211212.coursework_5" />
+		base-package="pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5" />
 
 	<!-- 配置 view 渲染器位置 -->
 	<bean id="internalResourceViewResolver"

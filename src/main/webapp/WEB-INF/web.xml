@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
-	<display-name>SpringCoreCoursework_20211212</display-name>
+	<display-name>SpringCoursework_20211212</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -19,7 +19,7 @@
 
 	<!--部署 DispatcherServlet -->
 	<servlet>
-		<servlet-name>SpringCoreCoursework_20211212</servlet-name>
+		<servlet-name>SpringCoursework_20211212</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -29,7 +29,7 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>SpringCoreCoursework_20211212</servlet-name>
+		<servlet-name>SpringCoursework_20211212</servlet-name>
 		<url-pattern>/mvc/*</url-pattern>
 	</servlet-mapping>
 	<!-- 中文支援 注意：經過驗證，此 filter 一定要配置在第一組 filter 中，不然可能會沒有作用 -->
