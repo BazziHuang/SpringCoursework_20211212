@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.examlink {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.examtable {
+	width:100%; 
+	border: 0p;
+}
+.exambody {
+	padding: 15px;
+}

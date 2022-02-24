@@ -11,6 +11,7 @@
 	Time: <%=new Date() %>
 	
 	<p><a href="./mvc/case02/lotto/">Lotto</a></p>
+	<p><a href="./mvc/case03/exam/">Exam</a></p>
 	
 </body>
 </html>

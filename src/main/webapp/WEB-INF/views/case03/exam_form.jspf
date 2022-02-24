@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spform"
+	uri="http://www.springframework.org/tags/form"%>
+
+<spform:form class="pure-form" method="post" modelAttribute="exam"
+	action="${ pageContext.request.contextPath }/mvc/case03/exam/">
+	<fieldset>
+		<legend>Exam Form ${ index }</legend>
+		<input type="hidden" id="_method" name="_method" value="${ _method }">
+		學號：
+		<spform:input path="studentId" />
+		<p />
+		科目：
+		<spform:select path="examId">
+			<spform:option value="">請選擇</spform:option>
+			<spform:options items="${ examSubjects }" itemValue="id" itemLabel="name" />
+		</spform:select>
+		<p />
+		日期：
+		<spform:input path="examDate" type="date" />
+		<p />
+		時段：
+		<!-- Homework 時段改成 spform:checkboxes -->
+		<spform:checkbox path="examSlot" value="A" />
+		上午(A)
+		<spform:checkbox path="examSlot" value="B" />
+		下午(B)
+		<spform:checkbox path="examSlot" value="C" />
+		晚上(C)
+		<p />
+		繳費：
+		<!-- Homework 繳費 spform:radiobuttons -->
+		<spform:radiobutton path="examPay" value="true" />
+		已繳
+		<spform:radiobutton path="examPay" value="false" />
+		未繳
+		<p />
+		備註：
+		<spform:textarea path="examNote" />
+		<p />
+		<button type="submit" class="pure-button pure-button-primary" ${ _method == 'POST'?'':'disabled' } >新增</button>
+		<button type="button" class="pure-button pure-button-primary" ${ _method == 'PUT'?'':'disabled' } onclick="updateExam(${ index })">修改</button>
+		<button type="button" class="pure-button pure-button-primary" ${ _method == 'PUT'?'':'disabled' } onclick="deleteExam(${ index })">刪除</button>
+	</fieldset>
+</spform:form>
