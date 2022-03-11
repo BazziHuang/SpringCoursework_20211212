@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.entity;
+package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.entity;
 
 public class ExamSubject {
 	

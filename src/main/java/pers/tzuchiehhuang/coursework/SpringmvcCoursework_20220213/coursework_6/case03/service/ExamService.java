@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.service;
+package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,10 +6,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.stereotype.Service;
 
-import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.entity.Exam;
-import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.entity.ExamPay;
-import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.entity.ExamSlot;
-import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.entity.ExamSubject;
+import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.entity.Exam;
+import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.entity.ExamPay;
+import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.entity.ExamSlot;
+import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.entity.ExamSubject;
 
 @Service
 public class ExamService {

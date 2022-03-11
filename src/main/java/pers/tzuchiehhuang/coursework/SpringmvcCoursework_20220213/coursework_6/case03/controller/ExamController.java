@@ -1,4 +1,4 @@
-package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.controller;
+package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.entity.Exam;
-import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.service.ExamService;
+import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.entity.Exam;
+import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_6.case03.service.ExamService;
 
 @Controller
 @RequestMapping("/case03/exam")

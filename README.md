@@ -61,6 +61,14 @@
 
 - [x] 將Exam時段改成spform:checkboxes；繳費改成spform:radiobuttons
 
-  
+  entity package建立選項的類別: 
+    [ExamSlot.java]()
+    [ExamPay.java]()
+  Service建立選項資料, 透過Controller將資料傳遞到頁面: 
+    [ExamService.java]()
+    [ExamController]()
+  網頁呈現: 
+    [exam_form.jspf]()
+
 
 
