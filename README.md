@@ -57,18 +57,18 @@
   Controller調用getLottosData()方法: [LottoController.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_5/case02/controller/LottoController.java)  
   網頁呈現: [show_lotto.jsp](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/webapp/WEB-INF/views/case02/show_lotto.jsp)  
 
-  ### 2022/02/13 - Coursework 6
+  ### 2022/02/26 - Coursework 6
 
 - [x] 將Exam時段改成spform:checkboxes；繳費改成spform:radiobuttons
 
-  entity package建立選項的類別: 
-    [ExamSlot.java]()
-    [ExamPay.java]()
-  Service建立選項資料, 透過Controller將資料傳遞到頁面: 
-    [ExamService.java]()
-    [ExamController]()
-  網頁呈現: 
-    [exam_form.jspf]()
+  entity package建立選項的類別:  
+    [ExamSlot.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_6/case03/entity/ExamSlot.java)  
+    [ExamPay.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_6/case03/entity/ExamPay.java)  
+  Service建立選項資料, 透過Controller將資料傳遞到頁面:  
+    [ExamService.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_6/case03/service/ExamService.java)  
+    [ExamController](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_6/case03/controller/ExamController.java)  
+  網頁呈現:  
+    [exam_form.jspf](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/webapp/WEB-INF/views/case03/exam_form.jspf)  
 
 
 
