@@ -1,5 +1,6 @@
 package pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.case03.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +20,40 @@ import pers.tzuchiehhuang.coursework.SpringmvcCoursework_20220213.coursework_5.c
 @Controller
 @RequestMapping("/case03/exam")
 public class ExamController {
+	
 	@Autowired
 	private ExamService examService;
 	
 	@GetMapping("/")
-	public String index(@ModelAttribute Exam exam, Model model) {
+	public String index(
+			@ModelAttribute Exam exam,
+			Model model
+			) {
+		List<Exam> exams = examService.queryAll().get();
 		model.addAttribute("_method", "POST");
-		model.addAttribute("exams", examService.query());
-		model.addAttribute("examSubjects", examService.queryExamSubjectList());
+		model.addAttribute("exams", exams);
+		model.addAttribute("examSubjects", examService.queryExamSubjects());
+		model.addAttribute("examSlots", examService.queryExamSlots());
+		model.addAttribute("examPays", examService.queryExamPays());
 		return "case03/exam";
 	}
 	
+	
 	@GetMapping("/{index}")
-	public String get(@PathVariable("index") int index, Model model) {
-		Optional<Exam> optExam = examService.get(index);
-		if(optExam.isPresent()) {
+	public String get(
+			@PathVariable int index,
+			Model model
+			) {
+		Optional<Exam> exam = examService.get(index);
+		if(exam.isPresent()) {
 			model.addAttribute("_method", "PUT");
-			model.addAttribute("exams", examService.query());
-			model.addAttribute("examSubjects", examService.queryExamSubjectList());
-			model.addAttribute("exam", optExam.get());
+			model.addAttribute("exams", examService.queryAll().get());
+			model.addAttribute("exam", exam.get());
+			model.addAttribute("examSubjects", examService.queryExamSubjects());
+			model.addAttribute("examSlots", examService.queryExamSlots());
+			model.addAttribute("examPays", examService.queryExamPays());
 			return "case03/exam";
 		}
-		// 沒找到資料，應該要透過統一錯誤處理機制來進行...
 		return "redirect:./";
 	}
 	
@@ -51,22 +64,31 @@ public class ExamController {
 	}
 	
 	@PutMapping("/{index}")
-	public String update(@PathVariable("index") int index, Exam exam) {
+	public String update(
+			@PathVariable("index") int index,
+			Exam exam
+			) {
 		examService.update(index, exam);
 		return "redirect:./";
 	}
 	
-	@PutMapping("/{index}/exam_note")
-	public String updateExamNote(@PathVariable("index") int index, Exam exam) {
+	@PutMapping("/{index}/updateExamNote")
+	public String updateExamNote(
+			@PathVariable("index") int index,
+			Exam exam
+			) {
 		examService.updateExamNote(index, exam.getExamNote());
 		return "redirect:../";
 	}
 	
 	@DeleteMapping("/{index}")
-	public String delete(@PathVariable("index") int index) {
+	public String delete(
+			@PathVariable("index") int index
+			) {
 		examService.delete(index);
 		return "redirect:./";
 	}
 	
 	
+
 }

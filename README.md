@@ -9,6 +9,7 @@
 - [**2022/01/09 - Coursework 3**](#20220109---coursework-3)
 - [**2022/01/23 - Coursework 4**](#20220123---coursework-4)
 - [**2022/02/13 - Coursework 5**](#20220213---coursework-5)
+- [**2022/02/26 - Coursework 6**](#20220226---coursework-6)
 
 
 ---
@@ -55,5 +56,11 @@
   Service建立getLottosData()方法: [LottoService.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_5/case02/service/LottoService.java)  
   Controller調用getLottosData()方法: [LottoController.java](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/java/pers/tzuchiehhuang/coursework/SpringmvcCoursework_20220213/coursework_5/case02/controller/LottoController.java)  
   網頁呈現: [show_lotto.jsp](https://github.com/BazziHuang/SpringCoursework_20211212/blob/main/src/main/webapp/WEB-INF/views/case02/show_lotto.jsp)  
+
+  ### 2022/02/13 - Coursework 6
+
+- [x] 將Exam時段改成spform:checkboxes；繳費改成spform:radiobuttons
+
+  
 
 
